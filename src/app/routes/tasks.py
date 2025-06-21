@@ -5,10 +5,10 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.controllers.database import get_session
-from app.controllers.security import get_current_user
-from app.models.models import Task, User
-from app.models.schemas import (
+from src.app.controllers.database import get_session
+from src.app.controllers.security import get_current_user
+from src.app.models.models import Task, User
+from src.app.models.schemas import (
     FilterTask,
     Message,
     TaskList,

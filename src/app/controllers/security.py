@@ -10,9 +10,9 @@ from python_multipart.exceptions import DecodeError
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.controllers.database import get_session
-from app.controllers.settings import Settings
-from app.models.models import User
+from src.app.controllers.database import get_session
+from src.app.controllers.settings import Settings
+from src.app.models.models import User
 
 settings = Settings()
 

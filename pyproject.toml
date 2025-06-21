@@ -1,7 +1,7 @@
 [project]
-name = "crud-task-api"
+name = "financial-tracker"
 version = "0.1.0"
-description = "Uma API capaz de criar usuários e tarefas"
+description = "Uma API capaz de criar usuários e tarefas, posteriormente criar e gerenciar consumos financeiros"
 authors = [
     {name = "João Trajano",email = "joaovictor.borbatrajano@gmail.com"}
 ]
@@ -27,6 +27,10 @@ dependencies = [
     "uvicorn (>=0.34.3,<0.35.0)",
     "compose (>=1.6.2,<2.0.0)",
 ]
+
+[tool.poetry]
+packages = [{include = "app", from = "src"}]
+
 [tool.coverage.run]
 concurrency = ["thread", "greenlet"]
 
@@ -62,9 +66,9 @@ asyncio_default_fixture_loop_scope = 'function'
 lint = 'ruff check'
 pre_format = 'ruff check --fix'
 format = 'ruff format'
-run = 'uvicorn --host 127.0.0.1 app.app:app'
+run = 'uvicorn --host 127.0.0.1 src.app.main:app'
 pre_test = 'task lint'
-test = 'pytest -s  --cov=app -vv'
+test = 'pytest -s  --cov=src -vv'
 post_test = 'coverage html'
 
 [build-system]

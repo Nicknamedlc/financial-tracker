@@ -7,9 +7,9 @@ Este projeto consiste em uma **API RESTful** para um sistema de gestão de taref
 ---
 
 ## **📋 Funcionalidades**  
-✔ **CRUD de Usuários** (Criar, Ler, Atualizar, Deletar)   
+✔ **CRUD de Usuários** (Criar, Ler, Atualizar, Deletar)  
 ✔ **CRUD de Tarefas** (Criar, Ler, Atualizar, Deletar)  
-✔ **Atribuição de Tarefas**   
+✔ **Atribuição de Tarefas**  
 ✔ **Autenticação JWT** (JSON Web Tokens)  
 ✔ **Logs Estruturados** (com Uvicorn e loguru)  
 ✔ **Documentação Automatizada** (Swagger/OpenAPI)  
@@ -21,11 +21,11 @@ Este projeto consiste em uma **API RESTful** para um sistema de gestão de taref
 ## **🛠️ Arquitetura (MVC)**  
 A API foi desenvolvida seguindo o padrão **MVC (Model-View-Controller)**, com as seguintes camadas:  
 
-| Camada          | Descrição                                                                 | Exemplo de Componentes                          |  
-|----------------|-------------------------------------------------------------------------|-----------------------------------------------|  
-| **Model**      | Gerencia os dados e a lógica de negócio.                                | `Task`, `User`              |  
-| **View**       | Responsável pela apresentação dos dados (JSON na API REST).             | FastAPI `Response`          |  
-| **Controller** | Intermediário entre Model e View, lidando com requisições HTTP.        | FastAPI `Router`, `Security`, `Settings`            |
+| Camada         | Descrição                                                       | Exemplo de Componentes                   |  
+|----------------|-----------------------------------------------------------------|------------------------------------------|  
+| **Model**      | Gerencia os dados e a lógica de negócio.                        | `Task`, `User`                           |  
+| **View**       | Responsável pela apresentação dos dados (JSON na API REST).     | FastAPI `Response`                       |  
+| **Controller** | Intermediário entre Model e View, lidando com requisições HTTP. | FastAPI `Router`, `Security`, `Settings` |
 
 ---
 
@@ -160,8 +160,8 @@ pip install poetry
 poetry install crud-task-api
 
 # Execute o comando para criar um docker a partir da dockerfile e da compose.yaml
-docker-compose up --build # Na primeira execução
-docker-compose up # Nas execuções posteriores
+docker compose up --build # Na primeira execução
+docker compose up # Nas execuções posteriores
 ```
 
 ### **Acesse a Documentação**  
@@ -179,10 +179,6 @@ pytest tests/integration
 
 # com o uso do poetry
 Poetry run task test 
-
-# Ou
-poetry shell
-task test
 ```
 
 ## **</> Autoformatação**  
@@ -190,7 +186,7 @@ task test
 # Para verificação automática de problemas de formatação no código
 poetry run task lint 
 
-# Para correção automática
+# Para correção automática (ele faz o comando "task lint" antes de formatar)
 poetry run task format
 ```
 ---

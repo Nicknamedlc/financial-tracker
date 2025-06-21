@@ -9,11 +9,11 @@ from sqlalchemy import event
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from testcontainers.postgres import PostgresContainer
 
-from app.app import app
-from app.controllers.database import get_session
-from app.controllers.security import get_password_hash
-from app.controllers.settings import Settings
-from app.models.models import User, table_registry
+from src.app.controllers.database import get_session
+from src.app.controllers.security import get_password_hash
+from src.app.controllers.settings import Settings
+from src.app.main import app
+from src.app.models.models import User, table_registry
 
 
 class UserFactory(factory.Factory):
@@ -66,7 +66,7 @@ def client(session):
 
 @pytest.fixture(scope='session')
 def engine():
-    with PostgresContainer('postgres:16', driver='psycopg') as postgres:
+    with PostgresContainer('postgres:17', driver='psycopg') as postgres:
         _engine = create_async_engine(postgres.get_connection_url())
         yield _engine
 

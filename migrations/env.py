@@ -7,8 +7,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.models.models import table_registry
-from app.controllers.settings import Settings
+from src.app.models.models import table_registry
+from src.app.controllers.settings import Settings
 
 config = context.config
 config.set_main_option('sqlalchemy.url', Settings().DATABASE_URL)

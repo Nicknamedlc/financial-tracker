@@ -6,8 +6,8 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from loguru import logger
 
-from app.models.schemas import Message
-from app.routes import auth, tasks, users
+from src.app.models.schemas import Message
+from src.app.routes import auth, tasks, users
 
 app = FastAPI(title='CRUD TASK API')
 
