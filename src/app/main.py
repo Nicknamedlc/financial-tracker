@@ -9,7 +9,7 @@ from loguru import logger
 from src.app.models.schemas import Message
 from src.app.routes import auth, tasks, users
 
-app = FastAPI(title='CRUD TASK API')
+app = FastAPI(title='Financial Tracker')
 
 if __name__ == '__main__':
     uvicorn.run(
