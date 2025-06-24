@@ -7,7 +7,7 @@ COPY . .
 RUN pip install poetry
 
 RUN poetry config installer.max-workers 10
-RUN poetry install --without dev --no-interaction --no-ansi
+RUN poetry install --without dev --no-interaction --no-ansi --no-root
 
 EXPOSE 8000
 
