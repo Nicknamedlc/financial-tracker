@@ -152,12 +152,12 @@ Para a instalação será necessário ter o [docker](https://docs.docker.com/get
 Com o docker instalado faremos o seguinte:
 ```bash
 # Clone o repositório
-git clone https://github.com/Nicknamedlc/crud-task-api.git
+git clone https://github.com/Nicknamedlc/financial-tracker.git
 
 # Instale as dependências
 pip install poetry
 
-poetry install crud-task-api
+poetry install financial-tracker
 
 # Execute o comando para criar um docker a partir da dockerfile e da compose.yaml
 docker compose up --build # Na primeira execução
