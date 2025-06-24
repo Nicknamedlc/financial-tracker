@@ -77,6 +77,10 @@ async def update_user(
     session: Session,
     current_user: CurrentUser,
 ):
+    """
+
+    :type user: UserSchema
+    """
     if current_user.id != user_id:
         raise HTTPException(
             detail='Not enough permissions', status_code=HTTPStatus.FORBIDDEN

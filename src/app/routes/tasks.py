@@ -69,7 +69,7 @@ async def patch_task(
     task_id: int, session: Session, user: CurrentUser, task: TaskUpdate
 ):
     task_db = await session.scalar(
-        select(Task).where(Task.id == task_id, user.id == Task.user_id)
+        select(Task).where(Task.id == task_id and user.id == Task.user_id)
     )
     if not task_db:
         raise HTTPException(
