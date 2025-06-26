@@ -3,15 +3,13 @@ from dataclasses import asdict
 import pytest
 from sqlalchemy import select
 
-from src.app.models.models import Task, User
+from src.app.models.models import Transaction, User
 
 
 @pytest.mark.asyncio
-async def test_create_user_without_task(session, mock_db_time, user):
+async def test_create_user_without_transaction(session, mock_db_time, user):
     with mock_db_time(model=User) as time:
-        new_user = User(
-            username='test', email='teste@teste.com', password='secret'
-        )
+        new_user = User(username='test', email='teste@teste.com', password='secret')
 
         session.add(new_user)
         await session.commit()
@@ -25,25 +23,25 @@ async def test_create_user_without_task(session, mock_db_time, user):
         'password': 'secret',
         'created_at': time,
         'updated_at': time,
-        'tasks': [],
+        'transactions': [],
     }
 
 
 @pytest.mark.asyncio
-async def test_create_task(session, user):
-    task = Task(
+async def test_create_transaction(session, user):
+    transaction = Transaction(
         title='Teste titulo',
         description='Teste desc',
         state='designada',
         user_id=user.id,
     )
 
-    session.add(task)
+    session.add(transaction)
     await session.commit()
 
-    task = await session.scalar(select(Task))
+    transaction = await session.scalar(select(Transaction))
 
-    assert asdict(task) == {
+    assert asdict(transaction) == {
         'title': 'Teste titulo',
         'description': 'Teste desc',
         'state': 'designada',
@@ -53,17 +51,17 @@ async def test_create_task(session, user):
 
 
 @pytest.mark.asyncio
-async def test_user_task_relationship(session, user: User):
-    task = Task(
+async def test_user_transaction_relationship(session, user: User):
+    transaction = Transaction(
         title='Teste titulo',
         description='Teste desc',
         state='designada',
         user_id=user.id,
     )
-    session.add(task)
+    session.add(transaction)
     await session.commit()
     await session.refresh(user)
 
     user = await session.scalar(select(User).where(User.id == user.id))
 
-    assert user.tasks == [task]
+    assert user.transactions == [transaction]

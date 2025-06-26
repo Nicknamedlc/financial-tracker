@@ -14,7 +14,7 @@ from src.app.controllers.security import (
 )
 from src.app.models.models import User
 from src.app.models.schemas import Token
-from src.app.routes.tasks import CurrentUser
+from src.app.routes.transactions import CurrentUser
 
 router = APIRouter(prefix='/auth', tags=['Autenticação'])
 Session = Annotated[AsyncSession, Depends(get_session)]
@@ -27,9 +27,7 @@ async def login_for_access_token(
     form_data: OAuth2Form,
     session: Session,
 ):
-    user = await session.scalar(
-        select(User).where(User.email == form_data.username)
-    )
+    user = await session.scalar(select(User).where(User.email == form_data.username))
 
     if not user:
         raise HTTPException(

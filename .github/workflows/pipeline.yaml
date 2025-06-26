@@ -23,7 +23,7 @@ jobs:
         run: pipx install poetry
 
       - name: Instalar dependências
-        run: poetry install --no-root
+        run: poetry install 
 
       - name: Executar testes
         run: poetry run task test

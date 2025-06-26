@@ -38,14 +38,10 @@ async def read_user(
     return {'users': user_list}
 
 
-@router.post(
-    '/', status_code=http.HTTPStatus.CREATED, response_model=UserPublic
-)
+@router.post('/', status_code=http.HTTPStatus.CREATED, response_model=UserPublic)
 async def create_user(user: UserSchema, session: Session):
     db_user = await session.scalar(
-        select(User).where(
-            (User.username == user.username) | (User.email == user.email)
-        )
+        select(User).where((User.username == user.username) | (User.email == user.email))
     )
 
     if db_user:
@@ -60,9 +56,7 @@ async def create_user(user: UserSchema, session: Session):
                 status_code=http.HTTPStatus.CONFLICT,
             )
     hashed_password = get_password_hash(user.password)
-    db_user = User(
-        username=user.username, email=user.email, password=hashed_password
-    )
+    db_user = User(username=user.username, email=user.email, password=hashed_password)
 
     session.add(db_user)
     await session.commit()
@@ -128,8 +122,6 @@ async def delete_user(
 async def read_user_by_id(user_id: int, session: Session):
     user_db = await session.scalar(select(User).where(User.id == user_id))
     if not user_db:
-        raise HTTPException(
-            detail='User not found', status_code=HTTPStatus.NOT_FOUND
-        )
+        raise HTTPException(detail='User not found', status_code=HTTPStatus.NOT_FOUND)
     else:
         return user_db

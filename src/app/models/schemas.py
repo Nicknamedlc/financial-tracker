@@ -1,18 +1,18 @@
 from pydantic import BaseModel, ConfigDict, EmailStr
 
 
-class TaskSchema(BaseModel):
+class TransactionSchema(BaseModel):
     title: str
     description: str
     state: str
 
 
-class TaskPublic(TaskSchema):
+class TransactionPublic(TransactionSchema):
     id: int
 
 
-class TaskList(BaseModel):
-    tasks: list[TaskPublic]
+class TransactionList(BaseModel):
+    transactions: list[TransactionPublic]
 
 
 class Token(BaseModel):
@@ -46,13 +46,13 @@ class FilterPage(BaseModel):
     limit: int = 100
 
 
-class FilterTask(FilterPage):
+class FilterTransaction(FilterPage):
     title: str | None = None
     description: str | None = None
     state: str | None = None
 
 
-class TaskUpdate(BaseModel):
+class TransactionUpdate(BaseModel):
     title: str | None = None
     description: str | None = None
     state: str | None = None

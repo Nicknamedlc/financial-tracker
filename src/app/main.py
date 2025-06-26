@@ -7,7 +7,7 @@ from fastapi.responses import HTMLResponse
 from loguru import logger
 
 from src.app.models.schemas import Message
-from src.app.routes import auth, tasks, users
+from src.app.routes import auth, transactions, users
 
 app = FastAPI(title='Financial Tracker')
 
@@ -44,9 +44,7 @@ class InterceptHandler(logging.Handler):
             frame = frame.f_back
             depth += 1
 
-        logger.opt(depth=depth, exception=record.exc_info).log(
-            level, record.getMessage()
-        )
+        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
 
 
 # Intercept standard logging
@@ -78,7 +76,7 @@ logger.add(
 
 app.include_router(users.router)
 app.include_router(auth.router)
-app.include_router(tasks.router)
+app.include_router(transactions.router)
 
 
 @app.get('/', status_code=http.HTTPStatus.OK, response_model=Message)

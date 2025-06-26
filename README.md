@@ -1,4 +1,4 @@
-# **Task Manager API**  
+# **Transaction Manager API**  
 
 
 ## **📌 Visão Geral**  
@@ -23,7 +23,7 @@ A API foi desenvolvida seguindo o padrão **MVC (Model-View-Controller)**, com a
 
 | Camada         | Descrição                                                       | Exemplo de Componentes                   |  
 |----------------|-----------------------------------------------------------------|------------------------------------------|  
-| **Model**      | Gerencia os dados e a lógica de negócio.                        | `Task`, `User`                           |  
+| **Model**      | Gerencia os dados e a lógica de negócio.                        | `Transaction`, `User`                           |  
 | **View**       | Responsável pela apresentação dos dados (JSON na API REST).     | FastAPI `Response`                       |  
 | **Controller** | Intermediário entre Model e View, lidando com requisições HTTP. | FastAPI `Router`, `Security`, `Settings` |
 
@@ -62,34 +62,34 @@ classDiagram
     UserRoute --> UserSchema : Retorna um
     UserModel --> Database : Persistência
 ```
-**Task**
+**Transaction**
 ```mermaid
 classDiagram
-    class TaskModel {
+    class TransactionModel {
         +id: int
         +title: str
         +description: str
-        +state: TaskState
+        +state: TransactionState
         +user_id: int
     }
 
-    class TaskSchema {
+    class TransactionSchema {
         +title: str
         +description: str
-        +state: TaskState
+        +state: TransactionState
     }
 
-    class TaskRoute {
+    class TransactionRoute {
         +create_task()
         +list_tasks()
         +patch_task()
         +delete_task()
     }
 
-    TaskSchema --> TaskRoute : Valida dados
-    TaskRoute --> TaskModel : Salva/Consulta
-    TaskRoute --> TaskSchema : Retorna um
-    TaskModel --> Database : Persistência
+    TransactionSchema --> TransactionRoute : Valida dados
+    TransactionRoute --> TransactionModel : Salva/Consulta
+    TransactionRoute --> TransactionSchema : Retorna um
+    TransactionModel --> Database : Persistência
     
     
     
@@ -109,9 +109,9 @@ sequenceDiagram
     Serviço->>Repositório: save(task)
     Repositório->>BancoDados: INSERT
     BancoDados-->>Repositório: ID criado
-    Repositório-->>Serviço: Task object
+    Repositório-->>Serviço: Transaction object
     Serviço->>Serviço: Validações/Regras
-    Serviço-->>API: Task criada
+    Serviço-->>API: Transaction criada
     API-->>Cliente: 201 Created (JSON)
 ```
 

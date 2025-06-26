@@ -48,7 +48,7 @@ freezegun = "^1.5.2"
 testcontainers = "^4.10.0"
 
 [tool.ruff]
-line-length = 79
+line-length = 90
 extend-exclude = ['migrations']
 
 [tool.ruff.lint]

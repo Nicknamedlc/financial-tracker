@@ -30,9 +30,7 @@ def create_access_token(data: dict):
     )
     to_encode.update({'exp': expire})
 
-    encoded_jwt = encode(
-        to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
-    )
+    encoded_jwt = encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
     return encoded_jwt
 
@@ -55,9 +53,7 @@ async def get_current_user(
         headers={'WWW-Authenticate': 'Bearer'},
     )
     try:
-        payload = decode(
-            token, settings.SECRET_KEY, algorithms=settings.ALGORITHM
-        )
+        payload = decode(token, settings.SECRET_KEY, algorithms=settings.ALGORITHM)
         subject_email = payload.get('sub')
         if not subject_email:
             raise credentials_exception
@@ -66,9 +62,7 @@ async def get_current_user(
         raise credentials_exception
     except DecodeError:
         raise credentials_exception
-    user = await session.scalar(
-        select(User).where(User.email == subject_email)
-    )
+    user = await session.scalar(select(User).where(User.email == subject_email))
 
     if not user:
         raise credentials_exception
