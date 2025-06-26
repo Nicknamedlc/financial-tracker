@@ -145,6 +145,10 @@ migrations/versions
 # mkdocs documentation
 /site
 
+# coisas
+memory
+database.db
+
 # mypy
 .mypy_cache/
 .dmypy.json
