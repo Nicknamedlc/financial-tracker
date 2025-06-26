@@ -7,8 +7,7 @@ COPY . .
 RUN pip install poetry
 
 RUN poetry config installer.max-workers 10
-RUN poetry install --without dev --no-interaction --no-ansi --no-root
-
+RUN poetry install --without dev --no-interaction --no-ansi
 EXPOSE 8000
 
 RUN chmod u+r+x entrypoint.sh
