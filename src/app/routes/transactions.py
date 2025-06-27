@@ -15,9 +15,10 @@ from src.app.models.schemas import (
     TransactionPublic,
     TransactionSchema,
     TransactionUpdate,
+    moeda,
 )
 
-router = APIRouter(prefix='/transactions', tags=['Tarefas'])
+router = APIRouter(prefix='/transactions', tags=['Transações'])
 Session = Annotated[AsyncSession, Depends(get_session)]
 CurrentUser = Annotated[User, Depends(get_current_user)]
 
@@ -33,7 +34,9 @@ async def crate_transaction(
         description=transaction.description,
         state=transaction.state,
         user_id=user.id,
+        value=transaction.value,
     )
+    transaction.value = moeda(transaction.value)
     session.add(transaction_db)
     await session.commit()
     await session.refresh(transaction_db)
