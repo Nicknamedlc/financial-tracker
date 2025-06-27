@@ -31,5 +31,6 @@ class Transaction:
     title: Mapped[str]
     description: Mapped[str]
     state: Mapped[str]
+    value: Mapped[float]
 
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'))

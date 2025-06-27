@@ -1,10 +1,18 @@
+import locale
+
 from pydantic import BaseModel, ConfigDict, EmailStr
+
+
+def moeda(valor):
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+    return locale.currency(valor, grouping=True, symbol=False)
 
 
 class TransactionSchema(BaseModel):
     title: str
     description: str
     state: str
+    value: float
 
 
 class TransactionPublic(TransactionSchema):

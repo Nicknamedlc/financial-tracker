@@ -34,6 +34,7 @@ async def test_create_transaction(session, user):
         description='Teste desc',
         state='designada',
         user_id=user.id,
+        value=500,
     )
 
     session.add(transaction)
@@ -47,6 +48,7 @@ async def test_create_transaction(session, user):
         'state': 'designada',
         'id': 1,
         'user_id': 1,
+        'value': 500.00,
     }
 
 
@@ -57,6 +59,7 @@ async def test_user_transaction_relationship(session, user: User):
         description='Teste desc',
         state='designada',
         user_id=user.id,
+        value=500.00,
     )
     session.add(transaction)
     await session.commit()

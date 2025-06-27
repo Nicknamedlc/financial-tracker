@@ -14,6 +14,7 @@ class TransactionFactory(factory.Factory):
     description = factory.Faker('text')
     state = factory.Faker('text')
     user_id = 1
+    value = 500.00
 
 
 def test_create_transaction(client, token):
@@ -24,6 +25,7 @@ def test_create_transaction(client, token):
             'title': 'Teste titulo',
             'description': 'Teste desc',
             'state': 'criada',
+            'value': 500.00,
         },
     )
 
@@ -32,6 +34,7 @@ def test_create_transaction(client, token):
         'title': 'Teste titulo',
         'description': 'Teste desc',
         'state': 'criada',
+        'value': 500.00,
     }
 
 
@@ -102,6 +105,7 @@ async def test_list_transactions_filters_combined(session, client, user, token):
             title='Test combinado',
             description='combina description',
             state='feita',
+            value=500.00,
         )
     )
 
