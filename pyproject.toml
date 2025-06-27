@@ -30,8 +30,8 @@ dependencies = [
     "python-dotenv (>=1.1.1,<2.0.0)",
 ]
 
-#[tool.poetry]
-#packages = [{include = "app", from = "src"}]
+[tool.poetry]
+package-mode = false
 
 [tool.coverage.run]
 concurrency = ["thread", "greenlet"]
